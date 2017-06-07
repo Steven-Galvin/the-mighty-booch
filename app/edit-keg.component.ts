@@ -17,7 +17,7 @@ import { Keg } from './keg.model';
         <input [(ngModel)]="childSelectedKeg.ABV"><br>
         <label>Enter New Type:</label>
         <input [(ngModel)]="childSelectedKeg.typeOfBev"><br>
-        <button (click)="doneButtonClicked()">Submit</button>
+        <button class="btn btn-sm btn-default" (click)="doneButtonClicked()">Submit</button>
       </div>
     </div>
   `
