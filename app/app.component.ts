@@ -11,10 +11,11 @@ import { Keg } from './keg.model';
     <select (change)="onChange($event.target.value)">
       <option value="allKegs" selected="selected">All Kegs</option>
       <option value="lessThanTen">Near Empty Kegs</option>
+      <option value="death">Medical grade</option>
     </select>
 
     <ul>
-      <li (click)="selectedKegDetails(currentKeg)" *ngFor="let currentKeg of masterKegList | lowvolume:filterKeg">{{currentKeg.name}}
+      <li id="kegs" [class]="priceColor(currentKeg)"(click)="selectedKegDetails(currentKeg)" *ngFor="let currentKeg of masterKegList | lowvolume:filterKeg">{{currentKeg.name}}
       <button class="btn btn-sm btn-default" (click)="editKeg(currentKeg)">Edit!</button>
       </li>
     </ul>
@@ -70,5 +71,13 @@ export class AppComponent {
 
   kegFormShow(){
     this.kegForm = true;
+  }
+
+  priceColor(keg) {
+    if(keg.price > 4) {
+      return "finer-things"
+    } else {
+      return "dollar-store"
+    }
   }
 }

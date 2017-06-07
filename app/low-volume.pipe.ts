@@ -16,7 +16,15 @@ export class LowVolumePipe implements PipeTransform {
         }
       }
       return output;
-    } else {
+    } else if(sortKeg === "death") {
+      for (var i = 0; i < input.length; i++) {
+        if (input[i].ABV >= 70) {
+          output.push(input[i]);
+        }
+      }
+      return output;
+    }
+    else {
       return input;
     }
   }
