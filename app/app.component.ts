@@ -74,7 +74,7 @@ export class AppComponent {
     new Keg('Sissy Sauce', 'For men', 1, 9000, 'Water'),
     new Keg('Mr. Purell', 'Ticonderoga', 3, 67, 'Kombucha'),
     new Keg('Tigers Blood', 'Literally Tigers Blood', 17, 42, 'Lifeforce'),
-    new Keg('Bekoci', 'Rehare', 1, 14, 'Who Knows?'),
+    new Keg('Bekoci', 'Rehare', 1, 14, 'Who Knows?')
   ];
 
   onChange(menuOption) {
