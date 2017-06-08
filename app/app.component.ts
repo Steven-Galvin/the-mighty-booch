@@ -11,35 +11,33 @@ import { Keg } from './keg.model';
       </div>
     </div>
     <div class="container">
-    <select (change)="onChange($event.target.value)">
-    <option value="allKegs" selected="selected">All Kegs</option>
-    <option value="lessThanTen">Near Empty Kegs</option>
-    <option value="death">Medical grade</option>
-    </select>
+      <select class="form-control" style="width: 20%;"(change)="onChange($event.target.value)">
+      <option value="allKegs" selected="selected">All Kegs</option>
+      <option value="lessThanTen">Near Empty Kegs</option>
+      <option value="death">Medical grade</option>
+      </select>
       <div class="row">
         <div class="col-md-8">
           <ul>
             <li id="kegs" [class]="priceColor(currentKeg)"(click)="selectedKegDetails(currentKeg)" *ngFor="let currentKeg of masterKegList | lowvolume:filterKeg">
-              <div class="row">
-                <div class="col-md-10">
-                  <h5>{{currentKeg.name}}</h5>
-                </div>
-                <div class="col-md-2">
-                  <button type="submit" class="kegButton" (click)="editKeg(currentKeg)"><img src="/edit.png"/></button>
-                </div>
-              </div>
+              <button type="submit" class="kegButton" (click)="editKeg(currentKeg)"><img src="/edit.png"/></button>
+              <h5>{{currentKeg.name}}</h5>
+              Brand: {{currentKeg.brand}}<br>
+              Type: {{currentKeg.typeOfBev}}
             </li>
           </ul>
 
         </div>
-        <div class="col-md-3" style="border-left: 1px solid #ccc; border-bottom: 1px solid #ccc; padding-bottom: 8px;"><br>
+        <div class="col-md-3" style="border-left: 1px solid #734305; border-bottom: 1px solid #734305; padding-bottom: 8px;"><br>
           <button class="btn btn-sm btn-default" (click)="kegFormShow()">Add A Keg</button>
 
           <new-keg *ngIf="kegForm === true" (newKegSender)="addKeg($event)" (kegFormHide)="hideKeg()"></new-keg>
           <keg-details
           *ngIf="kegDetails"
           [childSelectedKeg]="kegDetails" (doneButtonClickedSender)="finishedEdit()"
-          (doneDrankIt)="drankIt()">
+          (doneDrankIt)="drankIt('pint')"
+          (doneDrinkIt)="drankIt('growler')"
+          (doneDrunkIt)="drankIt('lrgGrowler')">
           </keg-details>
 
           <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEdit()"></edit-keg>
@@ -54,6 +52,8 @@ import { Keg } from './keg.model';
   </div>
   <div [innerHTML]="kanyeContent" class="kanye">
   </div>
+  <div [innerHTML]="taylorContent" class="taylor">
+  </div>
   `
 })
 
@@ -62,6 +62,7 @@ export class AppComponent {
   hassContent: string = "";
   drakeContent: string = "";
   kanyeContent: string = "";
+  taylorContent: string = "";
   blurNum: number = 0;
   selectedKeg = null;
   kegDetails = null;
@@ -98,9 +99,17 @@ export class AppComponent {
     this.kegForm = false;
   }
 
-  drankIt() {
-    this.blurNum += 0.1;
-    this.kegDetails.volume -= 1;
+  drankIt(size) {
+    if(size === 'pint') {
+      this.blurNum += 0.1;
+      this.kegDetails.volume -= 1;
+    } else if(size === 'growler') {
+      this.blurNum += 0.2;
+      this.kegDetails.volume -= 2;
+    } else {
+      this.blurNum += 0.4;
+      this.kegDetails.volume -= 4;
+    }
     if((this.blurNum * 10) >= 50){
       this.hassIt();
     }
@@ -133,6 +142,7 @@ export class AppComponent {
     this.hassContent = "<div class='shake-crazy shake-constant'><img  src='/hass.png'/></div>";
     this.drakeContent = "<div class='shake-chunk shake-constant'><img  src='/drake.png'/></div>";
     this.kanyeContent = "<div ><img class='kanye-spin' src='/kanye.png'/></div>";
+    this.taylorContent = "<div class='shake-rotate shake-constant'><img src='/taylor.png'/></div>";
 
   }
 }

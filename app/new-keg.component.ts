@@ -7,16 +7,16 @@ import { Keg } from './keg.model';
     <h1>New Keg</h1>
     <div>
     <label>Enter Keg Name:</label>
-    <input #newName><br>
+    <input class="form-control" #newName><br>
     <label>Enter Keg brand:</label>
-    <input #newBrand><br>
+    <input class="form-control" #newBrand><br>
     <label>Price per Pint?:</label>
-    <input #newPrice><br>
+    <input class="form-control" #newPrice><br>
     <label>Enter Keg ABV:</label>
-    <input #newABV><br>
+    <input class="form-control" #newABV><br>
     <label>Enter Keg Type:</label>
-    <input #newType><br>
-    <button class="btn btn-default" (click)="submitForm(
+    <input class="form-control" #newType><br>
+    <button class="btn btn-sm btn-default" (click)="submitForm(
       newName.value,
       newBrand.value,
       newPrice.value,

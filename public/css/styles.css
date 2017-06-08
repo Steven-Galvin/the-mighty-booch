@@ -1,5 +1,17 @@
 * {
   cursor: url(/beer-icon1.png), auto;
+  font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Lobster', cursive;
+}
+body {
+  background: linear-gradient(to top, #fff7e6, #ffd886);
+}
+
+hr {
+  border-color: #734305;
 }
 
 #theWholeThing {
@@ -10,7 +22,6 @@
 .jumbotron {
   background: url(/beer-header.jpg);
   height: 250px;
-
   color: white;
   text-shadow: 1px 1px 3px lightgrey;
 }
@@ -32,10 +43,23 @@ input:hover {
 }
 
 .finer-things {
-  background-color: lightpink;
+  background-color: #e0cce0;
 }
 .dollar-store {
-  background-color: lightblue;
+  color: black;
+  background-color: #bce7e5;
+}
+.finer-things:hover {
+  transition: background-color 1s ease,
+              color 1s ease;
+  color: white;
+  background-color: #660066;
+}
+.dollar-store:hover {
+  transition: background-color 1s ease,
+              color 1s ease;
+  color: white;
+  background-color: #20B2AA;
 }
 
 ul {
@@ -45,19 +69,15 @@ ul {
 
 #kegs {
   vertical-align: top;
-  text-align: center;
   list-style: none;
+  padding-left: 7px;
   margin-top: 2px;
   padding-top: 10px;
   margin-bottom: 7px;
   margin-right: 7px;
-  height: 80px;
+  height: 100px;
   width: 30%;
   display: inline-block;
-}
-
-#kegs:hover {
-  color: white;
 }
 
 .black{
@@ -93,16 +113,26 @@ ul {
 }
 
 .drake img{
+  opacity: 0.8;
   margin-top: -900px;
-  margin-left: 300px;
+  margin-left: 900px;
   height: 900px;
   width: auto;
 }
 
 .kanye img{
+  opacity: 0.5;
   margin-top: -1500px;
   float: right;
   height: 300px;
+  width: auto;
+}
+
+.taylor img{
+  opacity: 0.7;
+  margin-top: -900px;
+  float: right;
+  height: 450px;
   width: auto;
 }
 
