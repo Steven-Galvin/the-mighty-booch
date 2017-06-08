@@ -71,10 +71,9 @@ export class AppComponent {
     new Keg('Pain Juice', 'Juice Boys', 3, 17, 'Beer'),
     new Keg('Power THIRST', 'Picnic Face', 5, 50, 'Cider'),
     new Keg('Sissy Sauce', 'For men', 1, 9000, 'Water'),
-    new Keg('Sissy Sauce', 'For men', 1, 9000, 'Water'),
-    new Keg('Sissy Sauce', 'For men', 5, 9000, 'Water'),
-    new Keg('Sissy Sauce', 'For men', 1, 9000, 'Water'),
-    new Keg('Sissy Sauce', 'For men', 5, 9000, 'Water')
+    new Keg('Mr. Purell', 'Ticonderoga', 3, 67, 'Kombucha'),
+    new Keg('Tigers Blood', 'Literally Tigers Blood', 17, 42, 'Lifeforce'),
+    new Keg('Bekoci', 'Rehare', 1, 14, 'Who Knows?'),
   ];
 
   onChange(menuOption) {
