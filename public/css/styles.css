@@ -1,0 +1,26 @@
+* {
+  cursor: url(/beer-icon1.png), auto;
+}
+
+button:hover {
+  cursor: url(/beer-icon3.png), auto;
+}
+
+select:hover {
+  cursor: url(/beer-icon2.png), auto;
+}
+
+input:hover {
+  cursor: url(/beer-icon4.png), auto;
+}
+
+.finer-things {
+  background-color: lightpink;
+}
+.dollar-store {
+  background-color: lightblue;
+}
+
+#kegs:hover {
+  color: white;
+}
