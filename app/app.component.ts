@@ -32,7 +32,6 @@ import { Keg } from './keg.model';
           </ul>
 
         </div>
-
         <div class="col-md-3" style="border-left: 1px solid #ccc; border-bottom: 1px solid #ccc; padding-bottom: 8px;"><br>
           <button class="btn btn-sm btn-default" (click)="kegFormShow()">Add A Keg</button>
 
@@ -48,9 +47,12 @@ import { Keg } from './keg.model';
       </div>
 
     </div>
-
   </div>
   <div [innerHTML]="hassContent" class="hass">
+  </div>
+  <div [innerHTML]="drakeContent" class="drake">
+  </div>
+  <div [innerHTML]="kanyeContent" class="kanye">
   </div>
   `
 })
@@ -58,6 +60,8 @@ import { Keg } from './keg.model';
 export class AppComponent {
   kegForm: boolean = false;
   hassContent: string = "";
+  drakeContent: string = "";
+  kanyeContent: string = "";
   blurNum: number = 0;
   selectedKeg = null;
   kegDetails = null;
@@ -127,6 +131,9 @@ export class AppComponent {
   }
 
   hassIt(){
-    this.hassContent += "<div class='shake-slow shake-constant'><img  src='/hass.png'/></div>";
+    this.hassContent = "<div class='shake-crazy shake-constant'><img  src='/hass.png'/></div>";
+    this.drakeContent = "<div class='shake-chunk shake-constant'><img  src='/drake.png'/></div>";
+    this.kanyeContent = "<div ><img class='kanye-spin' src='/kanye.png'/></div>";
+
   }
 }

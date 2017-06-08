@@ -87,7 +87,27 @@ ul {
 }
 
 .hass img{
-  margin-top: -100px;
-  height: 50px;
+  margin-top: -800px;
+  height: 1000px;
   width: auto;
 }
+
+.drake img{
+  margin-top: -900px;
+  margin-left: 300px;
+  height: 900px;
+  width: auto;
+}
+
+.kanye img{
+  margin-top: -1500px;
+  float: right;
+  height: 300px;
+  width: auto;
+}
+
+.kanye-spin {
+  -webkit-animation:spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
