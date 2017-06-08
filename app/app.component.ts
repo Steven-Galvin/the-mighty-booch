@@ -4,43 +4,73 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'app-root',
   template: `
-  <div class="container">
-    <h1>The Mighty Booch</h1>
-    <button class="btn btn-sm btn-default" (click)="kegFormShow()">Add A Keg</button>
-
+  <div [class]="checkDrunkLevel()" id="theWholeThing" [ngStyle]="{'filter': 'blur(' + blurNum + 'px)'}">
+    <div class="jumbotron">
+      <div class="container">
+      <h1>The Mighty Booch</h1>
+      </div>
+    </div>
+    <div class="container">
     <select (change)="onChange($event.target.value)">
-      <option value="allKegs" selected="selected">All Kegs</option>
-      <option value="lessThanTen">Near Empty Kegs</option>
-      <option value="death">Medical grade</option>
+    <option value="allKegs" selected="selected">All Kegs</option>
+    <option value="lessThanTen">Near Empty Kegs</option>
+    <option value="death">Medical grade</option>
     </select>
+      <div class="row">
+        <div class="col-md-8">
+          <ul>
+            <li id="kegs" [class]="priceColor(currentKeg)"(click)="selectedKegDetails(currentKeg)" *ngFor="let currentKeg of masterKegList | lowvolume:filterKeg">
+              <div class="row">
+                <div class="col-md-10">
+                  <h5>{{currentKeg.name}}</h5>
+                </div>
+                <div class="col-md-2">
+                  <button type="submit" class="kegButton" (click)="editKeg(currentKeg)"><img src="/edit.png"/></button>
+                </div>
+              </div>
+            </li>
+          </ul>
 
-    <ul>
-      <li id="kegs" [class]="priceColor(currentKeg)"(click)="selectedKegDetails(currentKeg)" *ngFor="let currentKeg of masterKegList | lowvolume:filterKeg">{{currentKeg.name}}
-      <button class="btn btn-sm btn-default" (click)="editKeg(currentKeg)">Edit!</button>
-      </li>
-    </ul>
+        </div>
 
-    <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEdit()"></edit-keg>
-    <new-keg *ngIf="kegForm === true" (newKegSender)="addKeg($event)"></new-keg>
+        <div class="col-md-3" style="border-left: 1px solid #ccc; border-bottom: 1px solid #ccc; padding-bottom: 8px;"><br>
+          <button class="btn btn-sm btn-default" (click)="kegFormShow()">Add A Keg</button>
 
-    <keg-details
-      *ngIf="kegDetails"
-      [childSelectedKeg]="kegDetails" (doneButtonClickedSender)="finishedEdit()"
-      (doneDrankIt)="drankIt()"></keg-details>
+          <new-keg *ngIf="kegForm === true" (newKegSender)="addKeg($event)" (kegFormHide)="hideKeg()"></new-keg>
+          <keg-details
+          *ngIf="kegDetails"
+          [childSelectedKeg]="kegDetails" (doneButtonClickedSender)="finishedEdit()"
+          (doneDrankIt)="drankIt()">
+          </keg-details>
+
+          <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEdit()"></edit-keg>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div [innerHTML]="hassContent" class="hass">
   </div>
   `
 })
 
 export class AppComponent {
   kegForm: boolean = false;
-
+  hassContent: string = "";
+  blurNum: number = 0;
   selectedKeg = null;
   kegDetails = null;
   filterKeg: string = "allKegs";
 
   masterKegList: Keg[] = [
     new Keg('Pain Juice', 'Juice Boys', 3, 17, 'Beer'),
-    new Keg('Power THIRST', 'Picnic Face', 5, 50, 'Cider')
+    new Keg('Power THIRST', 'Picnic Face', 5, 50, 'Cider'),
+    new Keg('Sissy Sauce', 'For men', 1, 9000, 'Water'),
+    new Keg('Sissy Sauce', 'For men', 1, 9000, 'Water'),
+    new Keg('Sissy Sauce', 'For men', 5, 9000, 'Water'),
+    new Keg('Sissy Sauce', 'For men', 1, 9000, 'Water'),
+    new Keg('Sissy Sauce', 'For men', 5, 9000, 'Water')
   ];
 
   onChange(menuOption) {
@@ -61,8 +91,17 @@ export class AppComponent {
     this.masterKegList.push(newKeg);
   }
 
+  hideKeg(){
+    this.kegForm = false;
+  }
+
   drankIt() {
+    this.blurNum += 0.1;
     this.kegDetails.volume -= 1;
+    if((this.blurNum * 10) >= 50){
+      this.hassIt();
+    }
+    this.checkDrunkLevel();
   }
 
   selectedKegDetails(kegToView: Keg) {
@@ -79,5 +118,15 @@ export class AppComponent {
     } else {
       return "dollar-store"
     }
+  }
+
+  checkDrunkLevel() {
+    if((this.blurNum * 10) >= 10) {
+      return "shake-slow shake-constant"
+    }
+  }
+
+  hassIt(){
+    this.hassContent += "<div class='shake-slow shake-constant'><img  src='/hass.png'/></div>";
   }
 }
